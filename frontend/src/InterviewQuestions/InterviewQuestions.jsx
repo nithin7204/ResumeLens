@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./InterviewQuestions.css"; 
+import { FiUploadCloud } from "react-icons/fi";
+import "./InterviewQuestions.css";
 
 export default function InterviewQuestions() {
     const [file, setFile] = useState(null);
@@ -30,7 +31,7 @@ export default function InterviewQuestions() {
         formData.append("jobDescription", jobDescription);
         formData.append("currentRole", currentRole);
 
-        axios.post("https://hackathon-vxdp.onrender.com/api/questions", formData, {
+        axios.post("http://localhost:4000/api/questions", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -49,25 +50,36 @@ export default function InterviewQuestions() {
 
     return (
         <div className="interview-container">
-            <h2 className="interview-title">Expected Interview Questions</h2>
-            <form className="interview-form" onSubmit={handleSubmit}>
-                <div className="interview-form-group">
-                    <label>Upload Resume (PDF): </label>
-                    <input type="file" accept=".pdf" onChange={handleFileChange} />
-                </div>
-                <div className="interview-form-group">
-                    <label>Job Description:</label>
-                    <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} />
-                </div>
-                <div className="interview-form-group">
-                    <label>Current Role:</label>
-                    <input type="text" value={currentRole} onChange={(e) => setCurrentRole(e.target.value)} />
-                </div>
-                {error && <p className="interview-error-message">{error}</p>}
-                <button type="submit" className="interview-btn" disabled={loading}>
-                    {loading ? "Analyzing..." : "Generate Questions"}
-                </button>
-            </form>
+            <div className="interview-box">
+                <h2 className="interview-title">🎤 AI-Powered Interview Prep</h2>
+                <p className="interview-subtitle">Upload your resume and get AI-generated interview questions instantly.</p>
+                
+                <form className="interview-form" onSubmit={handleSubmit}>
+                    <div className="file-upload">
+                        <label className="file-label">
+                            <FiUploadCloud className="upload-icon" />
+                            {file ? file.name : "Upload Resume (PDF)"}
+                            <input type="file" accept=".pdf" onChange={handleFileChange} className="hidden-input" />
+                        </label>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label>Job Description</label>
+                        <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} className="input-box"/>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Current Role</label>
+                        <input type="text" value={currentRole} onChange={(e) => setCurrentRole(e.target.value)} className="input-box"/>
+                    </div>
+
+                    {error && <p className="error-message">{error}</p>}
+
+                    <button type="submit" className="interview-button" disabled={loading}>
+                        {loading ? "Analyzing..." : "Generate Questions"}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -30,7 +30,7 @@ export default function ResumeAnalysis() {
         formData.append("jobDescription", jobDescription);
         formData.append("currentRole", currentRole);
 
-        axios.post("https://hackathon-vxdp.onrender.com/api/resume", formData, {
+        axios.post("http://localhost:4000/api/resume", formData, {
             headers: { 
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -48,28 +48,30 @@ export default function ResumeAnalysis() {
     }
 
     return (
-        <div className={`resume-container ${response ? "results-visible" : ""}`}>
+        <div className="resume-container">
             {!response ? (
-                <>
-                    <h2 className="resume-title">Complete Resume Analysis</h2>
+                <div className="resume-box">
+                    <h2 className="resume-title">📄 AI Resume Analysis</h2>
+                    <p className="resume-subtitle">Upload your resume and get AI-driven insights.</p>
                     
                     <form className="resume-form" onSubmit={handleSubmit}>
+                        
                         <div className="resume-form-group">
-                            <label>Upload Resume (PDF):</label>
+                            <label>Upload Resume (PDF)</label>
                             <input type="file" accept=".pdf" onChange={handleFileChange} />
                         </div>
 
                         <div className="resume-form-group">
-                            <label>Job Description:</label>
+                            <label>Job Description</label>
                             <textarea
                                 value={jobDescription}
                                 onChange={(e) => setJobDescription(e.target.value)}
-                                placeholder="Enter the job description..."
+                                placeholder="Enter job description..."
                             />
                         </div>
 
                         <div className="resume-form-group">
-                            <label>Current Role:</label>
+                            <label>Current Role</label>
                             <input 
                                 type="text" 
                                 value={currentRole} 
@@ -84,7 +86,7 @@ export default function ResumeAnalysis() {
                             {loading ? "Analyzing..." : "Analyze Resume"}
                         </button>
                     </form>
-                </>
+                </div>
             ) : (
                 <ResumeAnalysisResult data={response} />
             )}

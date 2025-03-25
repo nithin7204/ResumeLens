@@ -1,36 +1,80 @@
-import React from "react";
-import "./Home.css"; // Importing the CSS file
+import React, { useState } from "react";
+import { Upload, Star, HelpCircle, Zap, ChevronRight } from 'lucide-react';
+import "./Home.css";
 
 const Home = () => {
+  const [activeFeature, setActiveFeature] = useState(null);
+
+  const features = [
+    {
+      icon: <Zap />,
+      title: "AI-Powered Analysis",
+      description: "Deep, comprehensive resume evaluation using advanced machine learning algorithms.",
+      details: "Our AI scrutinizes every detail, providing insights beyond traditional resume reviews."
+    },
+    {
+      icon: <HelpCircle />,
+      title: "Interview Mastery",
+      description: "Personalized interview preparation with AI-generated strategic questions.",
+      details: "Anticipate and excel in interviews with targeted, role-specific question simulations."
+    },
+    {
+      icon: <Star />,
+      title: "Career Optimization",
+      description: "Tailored recommendations for professional growth and skill enhancement.",
+      details: "Transform your career trajectory with data-driven, intelligent guidance."
+    }
+  ];
+
   return (
-    <div className="home-container">
-      <header className="hero-section">
-        <h1 className="title">ResumeLens</h1>
-        <p className="tagline">Your AI-Powered Career Navigator</p>
-      </header>
+    <div className="resume-lens-home">
+      <div className="resume-lens-home-container">
+        <div className="resume-lens-hero-badge-container">
+          <div className="resume-lens-hero-badge">
+            AI-Powered Career Intelligence
+          </div>
+        </div>
+        <header className="resume-lens-hero">
+          <div className="resume-lens-hero-content">
+            <h1 className="resume-lens-hero-title">ResumeLens</h1>
+            <p className="resume-lens-hero-tagline">
+              Elevate Your Professional Narrative
+            </p>
+            <p className="resume-lens-hero-description">
+              Unlock the full potential of your professional journey with intelligent resume analysis 
+              and strategic career insights.
+            </p>
+            <div className="resume-lens-cta-group">
+              <button className="resume-lens-primary-cta">
+                Analyze Your Resume
+                <ChevronRight className="cta-icon" />
+              </button>
+            </div>
+          </div>
+        </header>
 
-      <section className="about-section">
-        <h2>What is ResumeLens?</h2>
-        <p>
-          ResumeLens is your smart AI companion that analyzes your resume, understands job requirements, 
-          and provides personalized insights. Get AI-driven interview questions, 
-          resume improvements, and career suggestions—all in one place!
-        </p>
-      </section>
-
-      <section className="features-section">
-        <h2>Why Choose ResumeLens?</h2>
-        <ul>
-          <li>🔍 AI-driven resume analysis & insights</li>
-          <li>💡 Personalized job interview questions</li>
-          <li>⚡ Real-time feedback on strengths & weaknesses</li>
-          <li>🚀 Tailored career suggestions for growth</li>
-        </ul>
-      </section>
-
-      <footer className="footer">
-        <p>Empowering Careers with AI 🚀 | ResumeLens</p>
-      </footer>
+        <section className="resume-lens-features">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className={`resume-lens-feature ${activeFeature === index ? 'feature-active' : ''}`}
+              onMouseEnter={() => setActiveFeature(index)}
+              onMouseLeave={() => setActiveFeature(null)}
+            >
+              <div className="feature-header">
+                <div className="feature-icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+              </div>
+              <p className="feature-description">{feature.description}</p>
+              {activeFeature === index && (
+                <div className="feature-details">
+                  <p>{feature.details}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      </div>
     </div>
   );
 };

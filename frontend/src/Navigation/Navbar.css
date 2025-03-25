@@ -1,38 +1,88 @@
-/* Navbar Container */
-.navbar {
+:root {
+    --bg-dark: #0A0A0A;
+    --bg-dark-lighter: #1A1A1A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #888888;
+    --accent-color: #5E81FF;
+    --hover-color: #7B93FF;
+}
+
+.resume-lens-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+.resume-lens-navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(22, 19, 19, 0.838);
-    padding: 10px 20px;
-    border-bottom: 2px solid white;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
 }
 
-/* Left & Right Sections */
-.nav-left, .nav-right {
+.resume-lens-navbar-left {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 2rem;
 }
 
-/* Navbar Buttons */
-.navbar button {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    border-radius: 5px;
+.resume-lens-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-/* Hover Effect */
-.navbar button:hover {
-    background-color: white;
-    color: black;
+.resume-lens-nav-links {
+    display: flex;
+    gap: 1.5rem;
 }
 
-/* Remove Link Underline */
-.navbar a {
+.resume-lens-nav-link {
+    color: var(--text-secondary);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resume-lens-nav-link:hover {
+    color: var(--text-primary);
+}
+
+.resume-lens-navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.resume-lens-nav-button {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.resume-lens-nav-button:hover {
+    color: var(--text-primary);
+}
+
+.resume-lens-logout-button {
+    color: #FF6B6B;
+}
+
+.resume-lens-cta-button {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.resume-lens-cta-button:hover {
+    background-color: var(--hover-color);
 }

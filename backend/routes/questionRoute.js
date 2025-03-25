@@ -7,7 +7,7 @@ const upload = multer();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
+const authMiddleware = require("../middleware/authMiddleware");
 
 const pdfParse = require("pdf-parse");
 async function extractResumeContent(pdfBuffer) {
@@ -26,7 +26,7 @@ async function extractResumeContent(pdfBuffer) {
 
     return extractedText;
 }
-router.post("/",authMiddleware , upload.single("file"), async (req, res) => {
+router.post("/", authMiddleware , upload.single("file"), async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ error: "No file uploaded." });
         const resumeText = await extractResumeContent(req.file.buffer);
@@ -83,7 +83,7 @@ router.post("/",authMiddleware , upload.single("file"), async (req, res) => {
         console.log("Before extract :",result)
         const rawResponse = result.response.text();
         const cleanedResponse = rawResponse.replace(/```json|```/g, "").trim();
-        console.log("After Extract cleanedResponse)
+        
         res.json({ success: true, analysis: JSON.parse(cleanedResponse) });
     }
     catch (error) {
