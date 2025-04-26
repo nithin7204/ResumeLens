@@ -21,7 +21,7 @@ export default function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-    axios.post('http://resumelens-backend-env.eba-jepn5cmh.ap-south-1.elasticbeanstalk.com/api/auth/login', formData)
+    axios.post('https://d2vjesayznpn67.cloudfront.net/api/auth/login', formData)
       .then((res) => {
         if (res.status === 200) {
           localStorage.setItem('token', res.data.token);

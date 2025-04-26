@@ -10,7 +10,7 @@ export default function OtpVerify() {
 
     function handleVerify(e) {
         e.preventDefault();
-        axios.post("http://resumelens-backend-env.eba-jepn5cmh.ap-south-1.elasticbeanstalk.com/api/auth/signup/verify-otp", { email, user_otp: otp })
+        axios.post("https://d2vjesayznpn67.cloudfront.net/api/auth/signup/verify-otp", { email, user_otp: otp })
             .then((res) => {
                 alert("OTP verified successfully!");
                 navigate("/selection");

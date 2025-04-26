@@ -34,7 +34,7 @@ export default function Register() {
     }
 
     axios
-      .post("http://resumelens-backend-env.eba-jepn5cmh.ap-south-1.elasticbeanstalk.com/api/auth/signup/request-otp", {
+      .post("https://d2vjesayznpn67.cloudfront.net/api/auth/signup/request-otp", {
         email: formData.email,
       })
       .then((res) => {
