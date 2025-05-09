@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing icons for password visibility toggle
 import './Login.css';
 
 export default function Login() {
@@ -12,7 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value});
   }
 
   function togglePasswordVisibility() {
@@ -21,10 +21,14 @@ export default function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-    axios.post('https://d2vjesayznpn67.cloudfront.net/api/auth/login', formData)
+    axios.post('https://resume-lens-ygtf.onrender.com/api/auth/login', formData)
       .then((res) => {
         if (res.status === 200) {
+          // Store token and user data
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('user', JSON.stringify(res.data.user));
+          // Store email separately for easy access
+          localStorage.setItem('userEmail', formData.email);
           setUser({ token: res.data.token });
           navigate('/selection');
         }

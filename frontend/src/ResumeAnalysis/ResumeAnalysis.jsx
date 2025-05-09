@@ -30,7 +30,7 @@ export default function ResumeAnalysis() {
         formData.append("jobDescription", jobDescription);
         formData.append("currentRole", currentRole);
 
-        axios.post("https://d2vjesayznpn67.cloudfront.net/api/resume", formData, {
+        axios.post("https://resume-lens-ygtf.onrender.com/api/resume", formData, {
             headers: { 
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

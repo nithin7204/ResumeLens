@@ -7,6 +7,16 @@
     --button-hover: #4A6FEA;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+
 .analysis-container {
     display: flex;
     justify-content: center;

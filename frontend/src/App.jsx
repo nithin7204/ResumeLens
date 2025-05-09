@@ -10,6 +10,8 @@ import Selection from "./Selection/Selection";
 import OtpVerify from "./Register/OtpVerify";
 import ResumeAnalysisResult from "./ResumeAnalysis/ResAnalDisplay";
 import DisplayQuestions from "./InterviewQuestions/DisplayQuestions";
+import Profile from "./Profile/Profile";
+
 function App() {
     return (
         <Router>
@@ -25,6 +27,7 @@ function App() {
                     <Route path="/verify-otp" element={<OtpVerify />} />
                     <Route path="/resume-analysis-results" element={<ResumeAnalysisResult />} />
                     <Route path="/display-questions" element={<DisplayQuestions />} />
+                    <Route path="/profile" element={<Profile />} />
                 </Routes>
             </AuthProvider>
         </Router>

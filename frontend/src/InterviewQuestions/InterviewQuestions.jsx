@@ -31,7 +31,7 @@ export default function InterviewQuestions() {
         formData.append("jobDescription", jobDescription);
         formData.append("currentRole", currentRole);
 
-        axios.post("https://d2vjesayznpn67.cloudfront.net/api/questions", formData, {
+        axios.post("https://resume-lens-ygtf.onrender.com/api/questions", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
