@@ -25,7 +25,7 @@ async function sendOTP(email, otp) {
       from: 'scriptedsage00@gmail.com',
       to: email,
       subject: 'Your OTP Code',
-      text: "Your OTP code is ${otp}. It is valid for 10 minutes.",
+      text: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
     };
   
     try {
