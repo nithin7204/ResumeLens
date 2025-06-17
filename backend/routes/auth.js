@@ -10,8 +10,8 @@ const { EventEmitterAsyncResource } = require("nodemailer/lib/xoauth2/index.js")
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'nithinkumarkunchala@gmail.com',
-    pass: 'meic klmt qpsu wmwb', // Consider using environment variables for security
+    user: 'resumelens.notifications@gmail.com',
+    pass: 'ygng qxxs zqeh ceeo', // Consider using environment variables for security
   },
 });
 
@@ -22,7 +22,7 @@ function generateOTP() {
 
 async function sendOTP(email, otp) {
     const mailOptions = {
-      from: 'scriptedsage00@gmail.com',
+      from: 'resumelens.notifications@gmail.com',
       to: email,
       subject: 'Your OTP Code',
       text: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
